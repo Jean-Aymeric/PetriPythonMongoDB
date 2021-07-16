@@ -5,7 +5,7 @@ from shared.iPetri import IPetri
 from model.data.petri import Petri
 from model.data.cell import Cell
 from model.data.behavior.classicLive import ClassicLive
-from model.data.behavior.wormLive import WormLive
+from model.data.behavior.nagLive import NagLive
 from model.dao.daoPetri import DAOPetri
 import json
 
@@ -15,10 +15,10 @@ class Model(IModel):
         self.__dbConnector = DBConnector()
         self.__daoPetri = DAOPetri(self.__dbConnector)
         self.__loadConf()
-        self.__petri: IPetri = self.__daoPetri.load(196474024)
-#        self.__petri: IPetri = Petri(self.__petriPythonConf["width"], self.__petriPythonConf["height"])
-#        for i in range(self.__petriPythonConf["nbCells"]):
-#            self.__petri.addCell(Cell(self.__petri, WormLive(), 0))
+#        self.__petri: IPetri = self.__daoPetri.load(225426424)
+        self.__petri: IPetri = Petri(self.__petriPythonConf["width"], self.__petriPythonConf["height"])
+        for i in range(self.__petriPythonConf["nbCells"]):
+            self.__petri.addCell(Cell(self.__petri, NagLive(), 0))
 
     def getPetriById(self, idPetri: int) -> IPetri:
         return self.__petri
