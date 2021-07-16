@@ -6,12 +6,14 @@ from model.data.petri import Petri
 from model.data.cell import Cell
 from model.data.behavior.classicLive import ClassicLive
 from model.data.behavior.wormLive import WormLive
+from model.dao.daoPetri import DAOPetri
 import json
 
 
 class Model(IModel):
     def __init__(self):
         self.__dbConnector = DBConnector()
+        self.__daoPetri = DAOPetri(self.__dbConnector)
         self.__loadConf()
         self.__petri: IPetri = Petri(self.__petriPythonConf["width"], self.__petriPythonConf["height"])
         for i in range(self.__petriPythonConf["nbCells"]):
@@ -26,3 +28,6 @@ class Model(IModel):
     def __loadConf(self):
         with open('conf/petriPython.json') as jsonfile:
             self.__petriPythonConf = json.load(jsonfile)
+
+    def savePetri(self):
+        self.__daoPetri.save(self.__petri)

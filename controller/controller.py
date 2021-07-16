@@ -23,6 +23,7 @@ class Controller(IController):
                     #time.sleep(0.001)
             else:
                 time.sleep(1)
+        self.__model.savePetri()
 
     def performAction(self, action: Action):
         if action == Action.play:

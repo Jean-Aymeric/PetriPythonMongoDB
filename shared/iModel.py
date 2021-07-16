@@ -11,3 +11,7 @@ class IModel:
     @abstractmethod
     def getCells(self) -> [ICell]:
         ...
+
+    @abstractmethod
+    def savePetri(self):
+        ...

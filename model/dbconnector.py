@@ -7,7 +7,7 @@ class DBConnector:
         self.__db: MongoClient
         self.__dbConf = {}
         self.__loadConf()
-        #self.__DBConnect()
+        self.__DBConnect()
 
     def __DBConnect(self):
         __mongoDbConf = self.__dbConf["mongodb"]
@@ -16,3 +16,6 @@ class DBConnector:
     def __loadConf(self):
         with open('conf/dbconf.json') as jsonfile:
             self.__dbConf = json.load(jsonfile)
+
+    def getCollection(self, collection: str):
+        return self.__db[collection]
