@@ -15,9 +15,10 @@ class Model(IModel):
         self.__dbConnector = DBConnector()
         self.__daoPetri = DAOPetri(self.__dbConnector)
         self.__loadConf()
-        self.__petri: IPetri = Petri(self.__petriPythonConf["width"], self.__petriPythonConf["height"])
-        for i in range(self.__petriPythonConf["nbCells"]):
-            self.__petri.addCell(Cell(self.__petri, WormLive(), 0))
+        self.__petri: IPetri = self.__daoPetri.load(196474024)
+#        self.__petri: IPetri = Petri(self.__petriPythonConf["width"], self.__petriPythonConf["height"])
+#        for i in range(self.__petriPythonConf["nbCells"]):
+#            self.__petri.addCell(Cell(self.__petri, WormLive(), 0))
 
     def getPetriById(self, idPetri: int) -> IPetri:
         return self.__petri

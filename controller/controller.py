@@ -20,7 +20,6 @@ class Controller(IController):
                 oldCells = self.__model.getCells().copy()
                 for cell in oldCells:
                     cell.live()
-                    #time.sleep(0.001)
             else:
                 time.sleep(1)
         self.__model.savePetri()
